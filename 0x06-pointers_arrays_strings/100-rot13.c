@@ -1,19 +1,30 @@
 #include "main.h"
+#include <stdio.h>
+
 /**
- * string_toupper - lower to upper
- * @s: pointer to char params
+ * rot13 - encoder rot13
+ * @s: pointer to string params
  *
  * Return: *s
  */
 
-char *string_toupper(char *s)
+char *rot13(char *s)
 {
 	int i;
+	int j;
+	char data1[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+	char datarot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (s[i] >= 'a' && s[i] <= 'z')
-			s[i] -= 32;
+		for (j = 0; j < 52; j++)
+		{
+			if (s[i] == data1[j])
+			{
+				s[i] = datarot[j];
+				break;
+			}
+		}
 	}
 	return (s);
 }
